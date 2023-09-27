@@ -1,10 +1,10 @@
-NAME = ex00
+NAME = convert
 
-HEADERS_LIST = 
+HEADERS_LIST = ScalarConverter.hpp
 HEADERS_DIRECTORY = ./includes/
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
-SOURCES_LIST = 
+SOURCES_LIST = ScalarConverter.cpp main.cpp
 SOURCES_DIRECTORY = ./sources/
 SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 
