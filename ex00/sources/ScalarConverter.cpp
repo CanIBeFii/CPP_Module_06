@@ -115,7 +115,8 @@ bool	ScalarConverter::isFloat( std::string& str ) {
 	char*	endptr;
 	float	num = strtof( newStr.c_str(), &endptr );
 
-	return ( str.at(pos) == 'f' && endptr != newStr.c_str() && *endptr == '\0' && num );
+	return ( str.at(pos) == 'f'&& str.find('.') != std::string::npos
+			 && endptr != newStr.c_str() && *endptr == '\0' && num );
 }
 
 bool	ScalarConverter::isDouble( std::string& str ) {
@@ -126,7 +127,8 @@ bool	ScalarConverter::isDouble( std::string& str ) {
 	char*	endptr;
 	double	num = strtod( str.c_str(), &endptr );
 
-	return ( endptr != str.c_str() && *endptr == '\0' && num );
+	return ( str.find('.') != std::string::npos && 
+			endptr != str.c_str() && *endptr == '\0' && num );
 }
 
 void	ScalarConverter::printChar( char c ) {
@@ -160,7 +162,7 @@ void 	ScalarConverter::print( char c ) {
 }
 
 void 	ScalarConverter::print( int i ) {
-	if ( i < std::numeric_limits<char>::min() || i > std::numeric_limits<char>::max() ) {
+	if ( i <= std::numeric_limits<char>::min() || i >= std::numeric_limits<char>::max() ) {
 		std::cout << "char: impossible" << std::endl;
 	} else {
 		printChar( static_cast<char>( i ) );
@@ -172,13 +174,13 @@ void 	ScalarConverter::print( int i ) {
 }
 
 void	ScalarConverter::print( float f ) {
-	if ( f < std::numeric_limits<char>::min() || f > std::numeric_limits<char>::max() || f != f ) {
+	if ( f <= std::numeric_limits<char>::min() || f >= std::numeric_limits<char>::max() || f != f ) {
 		std::cout << "char: impossible" << std::endl;
 	} else {
 		printChar( static_cast<char>( f ) );
 	}
 
-	if ( f < std::numeric_limits<int>::min() || f > std::numeric_limits<int>::max()|| f != f ) {
+	if ( f <= std::numeric_limits<int>::min() || f >= std::numeric_limits<int>::max()|| f != f ) {
 		std::cout << "int: impossible" << std::endl;
 	} else {
 		printInt( static_cast<int>( f ) );
@@ -189,19 +191,19 @@ void	ScalarConverter::print( float f ) {
 }
 
 void	ScalarConverter::print( double d ) {
-	if ( d < std::numeric_limits<char>::min() || d > std::numeric_limits<char>::max() || d != d ) {
+	if ( d <= std::numeric_limits<char>::min() || d >= std::numeric_limits<char>::max() || d != d ) {
 		std::cout << "char: impossible" << std::endl;
 	} else {
 		printChar( static_cast<char>( d ) );
 	}
 
-	if ( d < std::numeric_limits<int>::min() || d > std::numeric_limits<int>::max() || d != d ) {
+	if ( d <= std::numeric_limits<int>::min() || d >= std::numeric_limits<int>::max() || d != d ) {
 		std::cout << "int: impossible" << std::endl;
 	} else {
 		printInt( static_cast<int>( d ) );
 	}
 
-	if ( (d < std::numeric_limits<float>::min() || d > std::numeric_limits<float>::max()) && d != 0.0 ) {
+	if ( (d <= std::numeric_limits<float>::min() || d >= std::numeric_limits<float>::max()) && d != 0.0 ) {
 		std::cout << "float: impossible" << std::endl;
 	} else {
 		printFloat( static_cast<float>( d ) );
