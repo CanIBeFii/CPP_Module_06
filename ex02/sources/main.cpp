@@ -2,12 +2,12 @@
 #include "A.hpp"
 #include "B.hpp"
 #include "C.hpp"
+#include <cstdlib>
 
 Base*	generate( void ) {
-	static int	i = 0;
 	Base*		base;
 
-	switch( i % 3 ) {
+	switch( rand() % 3 ) {
 		case 0:
 			base = new A();
 			break;
@@ -19,7 +19,6 @@ Base*	generate( void ) {
 			break;
 	}
 
-	i++;
 	return ( base );
 }
 
@@ -66,6 +65,7 @@ void	identify( Base& p ) {
 
 int	main( void ) {
 	Base*	ptr;
+	srand( time( NULL ) );
 
 	ptr = generate();
 	identify( ptr );
