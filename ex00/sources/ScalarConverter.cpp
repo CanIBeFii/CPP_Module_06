@@ -1,4 +1,5 @@
-#include "ScalarConverter.hpp"
+#include "../includes/ScalarConverter.hpp"
+#include <cstddef>
 
 // Constructors
 ScalarConverter::ScalarConverter( void ) {
@@ -115,7 +116,7 @@ bool	ScalarConverter::isFloat( std::string& str ) {
 	char*	endptr;
 	float	num = strtof( newStr.c_str(), &endptr );
 
-	return ( str.at(pos) == 'f'&& str.find('.') != std::string::npos
+	return ( str.at(pos) == 'f' && str.at( pos - 1) != '.' && str.find('.') != std::string::npos
 			 && endptr != newStr.c_str() && *endptr == '\0' && num );
 }
 
@@ -124,10 +125,11 @@ bool	ScalarConverter::isDouble( std::string& str ) {
 		return ( true );
 	}
 
+	size_t	pos = str.length() - 1; 
 	char*	endptr;
 	double	num = strtod( str.c_str(), &endptr );
 
-	return ( str.find('.') != std::string::npos && 
+	return ( str.find('.') != std::string::npos && str.at( pos ) != '.' &&
 			endptr != str.c_str() && *endptr == '\0' && num );
 }
 

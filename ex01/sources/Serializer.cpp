@@ -1,4 +1,4 @@
-#include "Serializer.hpp"
+#include "../includes/Serializer.hpp"
 
 // Constructors
 Serializer::Serializer( void ) {
