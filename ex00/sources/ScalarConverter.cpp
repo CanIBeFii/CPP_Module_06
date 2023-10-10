@@ -106,7 +106,7 @@ bool	ScalarConverter::isInt( std::string& str ) {
 }
 
 bool	ScalarConverter::isFloat( std::string& str ) {
-	if ( str == "0.0f" ) {
+	if ( str == "0.0f" || str == "nanf" || str == "inff" || str == "+inff" || str == "-inff") {
 		return ( true );
 	}
 
@@ -121,7 +121,7 @@ bool	ScalarConverter::isFloat( std::string& str ) {
 }
 
 bool	ScalarConverter::isDouble( std::string& str ) {
-	if ( str == "0.0" ) {
+	if ( str == "0.0" || str == "nan" || str == "inf" || str == "+inf" || str == "-inf" ) {
 		return ( true );
 	}
 
@@ -182,7 +182,7 @@ void	ScalarConverter::print( float f ) {
 		printChar( static_cast<char>( f ) );
 	}
 
-	if ( f <= std::numeric_limits<int>::min() || f >= std::numeric_limits<int>::max()|| f != f ) {
+	if ( f <= std::numeric_limits<int>::min() || f >= std::numeric_limits<int>::max() || f != f ) {
 		std::cout << "int: impossible" << std::endl;
 	} else {
 		printInt( static_cast<int>( f ) );
